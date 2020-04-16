@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: expression-evel
+spec:
+  selector:
+    app: expression-evel
+  ports:
+  - protocol: TCP
+    port: 8080
+  type: ClusterIP

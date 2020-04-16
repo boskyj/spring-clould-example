@@ -1,0 +1,23 @@
+spring:
+ application:
+  name: interest-app
+server:
+  port: 9080
+  
+
+eureka:         #tells about the Eureka server details and its refresh time
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://kube-discovery:9000/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+    
+logging:
+ level:
+  com.example.howtodoinjava: DEBUG

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expression-evel
+spec:
+  selector:
+      matchLabels:
+        app:  expression-evel
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  expression-evel
+    spec:
+      containers:
+        - name:  expression-evel
+          image: expression-evel:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080

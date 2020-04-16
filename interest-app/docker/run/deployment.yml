@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: interest-app
+spec:
+  selector:
+      matchLabels:
+        app:  interest-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  interest-app
+    spec:
+      containers:
+        - name:  interest-app
+          image: interest-app:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 9080

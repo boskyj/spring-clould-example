@@ -1,0 +1,22 @@
+spring:
+ application:
+  name: expression-evel
+server:
+  port: 8080
+  
+eureka:         #tells about the Eureka server details and its refresh time
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://kube-discovery:9000/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+ribbon:
+  eureka:
+   enabled: false

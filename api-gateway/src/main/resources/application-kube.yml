@@ -1,0 +1,48 @@
+spring:
+ application:
+  name: api-gateway
+server:
+  port: 7080
+  
+eureka:         #tells about the Eureka server details and its refresh time
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://kube-discovery:9000/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+ 
+# ribbon:
+#   eureka:
+#     enabled: false
+
+# routing for service 1
+
+zuul:
+  routes:
+    interest_service:
+      path: /api/interest/**
+      url: http://interest-app:9080/interests/
+    interest_dis_service:
+      path: /api/interest-service/**
+      serviceId: INTEREST-APP
+    eval_service:
+      path: /api/calc/**
+      url: http://expression-evel:8080/calculator/
+    eval_dis_service:
+      path: /api/calc-service/**
+      serviceId: EXPRESSION-EVEL
+  ratelimit:
+    enabled: true
+    repository: BUCKET4J_HAZELCAST
+    policy-list:
+      eval_dis_service:
+        - limit: 10
+          refresh-interval: 60
+          type:
+            - origin

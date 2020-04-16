@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: kube-discovery
+spec:
+  selector:
+    app: kube-discovery
+  ports:
+  - protocol: TCP
+    port: 9000
+  type: ClusterIP
